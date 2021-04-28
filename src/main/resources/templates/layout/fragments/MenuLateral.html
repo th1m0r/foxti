@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:aratu="http://aratu.tmautomacao.com.br">
+	
+<body>
+	<aside class="main-sidebar sidebar-dark-primary elevation-4" th:fragment="layout-sidebar">	
+		<a href="/" class="brand-link">
+	        <img th:src="@{/images/tm.png}"
+	            alt="FoxIT"
+	            class="brand-image elevation-3"
+	           style="opacity: .9; borderRadius: 20px;" />
+	        <span class="brand-text font-weight-light">FoxIT APP</span>
+	    </a>		
+		<div class="sidebar">
+		   	<nav class="mt-2">
+	    		<ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">	
+		       		<li class="nav-item">
+	        			<a th:href="@{/}" class="nav-link">
+	        				<i class="nav-icon fa fa-tachometer-alt"></i>
+	        				<p>Dashboard</p>
+	      				</a>
+		       		</li>
+	       		
+		       		<li class="nav-item has-treeview">
+	        			<a href="#" class="nav-link">
+		          			<i class="fas fa-database nav-icon"></i>		          			
+		          			<p>
+		          				Cadastros <i class="right fas fa-angle-left"></i>
+				            </p>
+	        			</a>
+	       				<ul class="nav nav-treeview">		       				
+			       			<li class="nav-item">
+			        			<a th:href="@{/produtos}" class="nav-link">
+			        				<i class="nav-icon fas fa-university"></i>
+			        				<p>Solicitante</p>
+			      				</a>
+			       			</li>
+       						<li class="nav-item">
+		        				<a th:href="@{/clientes}" class="nav-link">
+			        				<i class="nav-icon fas fa-user-alt"></i>
+			        				<p>Usuário</p>
+			      				</a>
+			       			</li>
+		       				<li class="nav-item">
+		        				<a th:href="@{/fornecedores}" class="nav-link">
+		        					<i class="nav-icon fas fa-user-cog"></i>
+			        				<p>Técinico</p>
+			      				</a>
+			       			</li>			       			 
+	         			</ul>
+		       		</li>	
+	
+		       		<li class="nav-item has-treeview">
+	         			<a href="#" class="nav-link">
+		           			<i class="nav-icon fas fa-keyboard"></i>		          			
+		          			<p>
+		          				Ordem de serviço <i class="right fas fa-angle-left"></i>
+				            </p>
+	         			</a>
+		         			
+	         			<ul class="nav nav-treeview">	         		
+				            <li class="nav-item">
+				            	<a th:href="@{/validacaoPreco}" class="nav-link">
+			            			<i class="nav-icon fa fa-hand-holding-usd"></i>	
+				            		<p>Cadastrar</p>
+				            	</a>
+				            </li>
+		       				<li class="nav-item">
+		       					<a th:href="@{/movimentacoesEstoque}" class="ml-1 nav-link"> 
+		       						<i class="nav-icon fas fa-people-carry"></i>
+									<p>Baixar</p>
+								</a>
+			       			</li>
+		       				<li class="nav-item">
+		       					<a th:href="@{/transferencias}" class="ml-1 nav-link"> 
+		       						<i class="nav-icon fas fa-exchange-alt"></i>
+									<p>Transfência entre lojas</p>
+								</a>
+			       			</li>
+	         			</ul>
+		       		</li>	
+		       		
+		       		<li class="nav-item has-treeview">
+	         			<a href="#" class="nav-link">
+		           			<i class="nav-icon fas fa-print"></i>
+		           			<p>
+		           				Relatórios 
+		           				<i class="right fas fa-angle-left"></i>
+	           				</p>		          
+	         			</a>		
+	         			<ul class="nav nav-treeview">
+				            <li class="nav-item">
+				            	<a th:href="@{/cotacoes}" class="nav-link">
+				            		<i class="nav-icon fa fa-gavel"></i>
+				            		<p>O.S. em aberto</p>
+				            	</a>
+				            </li>				          
+				            <li class="nav-item">
+				            	<a th:href="@{/trocas}" class="nav-link">
+				            		<i class="nav-icon fa fa-exchange-alt"></i>
+				            		<p>O.S. vencida</p>
+				            	</a>
+				            </li>				            				            				           
+	         			</ul>
+		       		</li>		       		
+	    		</ul>
+		   	</nav>	
+		</div>
+	</aside>
+</body>
+</html>

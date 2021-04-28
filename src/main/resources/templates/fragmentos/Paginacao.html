@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+	
+<th:block th:fragment="pagination (pagina)">
+	<div class="center" th:if="${not pagina.vazia}">
+		<nav>
+		    <ul class="pagination justify-content-center" th:with="paginaAtual=${pagina.atual}">					    
+						    <li class="page-item" th:classappend="${pagina.primeira} ? disabled">
+			        <a class="page-link" th:href="${pagina.irParaPagina(0)}">
+			        	<i class="fas fa-angle-double-left"></i>
+			        </a>
+			    </li>
+			    <li class="page-item" th:classappend="${pagina.primeira} ? disabled">
+			        <a class="page-link" th:href="${pagina.irParaPagina(paginaAtual-1)}">
+			        	<i class="fas fa-angle-left"></i>
+			        </a>
+			    </li>
+		    
+			    <th:block th:each="p : ${#numbers.sequence(pagina.inicio, pagina.fim)}" th:with="numeroPagina=${p-1}">
+					<li class="page-item" th:classappend="${paginaAtual == numeroPagina} ? active">
+						<a class="page-link	" th:href="${pagina.irParaPagina(numeroPagina)}">[[${p}]]</a>
+					</li>
+				</th:block>
+		    		    
+			    <li class="page-item" th:classappend="${pagina.ultima} ? disabled">
+			        <a class="page-link" th:href="${pagina.irParaPagina(paginaAtual+1)}">
+			        	<i class="fas fa-angle-right"></i>
+			        </a>
+			    </li>
+			    <li class="page-item" th:classappend="${pagina.ultima} ? disabled">
+			        <a class="page-link" th:href="${pagina.irParaPagina(pagina.total-1)}">
+			        	<i class="fas fa-angle-double-right"></i>
+			        </a>
+			    </li>
+		    </ul>
+		</nav>		
+	</div>
+</th:block>
+	
+</html>
