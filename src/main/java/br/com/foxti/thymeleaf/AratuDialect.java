@@ -1,4 +1,4 @@
-package br.com.foxit.thymeleaf;
+package br.com.foxti.thymeleaf;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,11 +8,11 @@ import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
-import br.com.foxit.thymeleaf.processor.ClassForErrorAttributeTagProcessor;
-import br.com.foxit.thymeleaf.processor.MenuAttributeTagProcessor;
-import br.com.foxit.thymeleaf.processor.MessageElementTagProcessor;
-import br.com.foxit.thymeleaf.processor.OrderElementTagProcessor;
-import br.com.foxit.thymeleaf.processor.PaginationElementTagProcessor;
+import br.com.foxti.thymeleaf.processor.ClassForErrorAttributeTagProcessor;
+import br.com.foxti.thymeleaf.processor.MenuAttributeTagProcessor;
+import br.com.foxti.thymeleaf.processor.MessageElementTagProcessor;
+import br.com.foxti.thymeleaf.processor.OrderElementTagProcessor;
+import br.com.foxti.thymeleaf.processor.PaginationElementTagProcessor;
 
 
 @Component

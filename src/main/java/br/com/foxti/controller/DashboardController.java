@@ -1,4 +1,4 @@
-package br.com.foxit.controller;
+package br.com.foxti.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

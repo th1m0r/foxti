@@ -1,4 +1,4 @@
-package br.com.foxit.controller.page;
+package br.com.foxti.controller.page;
 
 import java.util.List;
 

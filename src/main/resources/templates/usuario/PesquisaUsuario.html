@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:aratu="http://aratu.tmautomacao.com.br">
+
+<head>
+	<title>Usuários</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div>
+						<h1>Pesquisa Usuários</h1>
+					</div>					
+					<div class="ml-auto">					
+						<a class="btn btn-sm btn-primary" th:href="@{/usuarios/novo}">
+							<i class="fa fa-plus"></i> 
+							<span>Cadastrar</span>
+						</a>					
+					</div>
+				</div>				
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="table-responsive">
+							<table class="table table-sm table-striped">
+								<thead>
+									<tr>
+										<th class="text-center">ID</th>
+										<th class="text-center">NOME</th>
+										<th class="text-center">LOGIN</th>
+										<th class="text-center"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="usuario : ${pagina.conteudo}">
+										<td class="text-center" th:text="${usuario.id}"></td>
+										<td	th:text="${usuario.nome}"></td>
+										<td	th:text="${usuario.login}"></td>										
+										<td class="text-center">
+											<a class="btn btn-info js-tooltip" title="Editar"
+													th:href="@{/usuarios/{id}(id=${usuario.id})}"> 
+												<i class="fas fa-pencil-alt"></i>
+											</a>											
+											<a class="btn btn-danger js-tooltip js-exclusao-btn"
+													title="Excluir" href="#"
+													data:url="@{/usuarios/{id}(id=${usuario.id})}"
+													data:objeto="${usuario.nome}"> 
+												<i class="fas fa-trash"></i>
+											</a>
+										</td>
+									</tr>
+									<tr th:if="${pagina.vazia}">
+										<td colspan="3">Nenhum usuário cadastrado</td>
+									</tr>
+								</tbody>
+							</table>					
+						</div>												
+						<aratu:pagination page="${pagina}"/>	
+					</div>	
+				</div>			
+			</div>
+		</div>
+	</div>
+</body>
+</html>

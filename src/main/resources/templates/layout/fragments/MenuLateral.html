@@ -5,12 +5,9 @@
 	
 <body>
 	<aside class="main-sidebar sidebar-dark-primary elevation-4" th:fragment="layout-sidebar">	
-		<a href="/" class="brand-link">
-	        <img th:src="@{/images/tm.png}"
-	            alt="FoxIT"
-	            class="brand-image elevation-3"
-	           style="opacity: .9; borderRadius: 20px;" />
-	        <span class="brand-text font-weight-light">FoxIT APP</span>
+		<a href="/" class="brand-link d-flex justify-content-center">
+	        <img th:src="@{/images/logo_foxti.png}" alt="FoxTI" class="brand-image elevation-3" />
+	        
 	    </a>		
 		<div class="sidebar">
 		   	<nav class="mt-2">
@@ -33,11 +30,11 @@
 			       			<li class="nav-item">
 			        			<a th:href="@{/produtos}" class="nav-link">
 			        				<i class="nav-icon fas fa-university"></i>
-			        				<p>Solicitante</p>
+			        				<p>Contratante</p>
 			      				</a>
 			       			</li>
        						<li class="nav-item">
-		        				<a th:href="@{/clientes}" class="nav-link">
+		        				<a th:href="@{/usuarios}" class="nav-link">
 			        				<i class="nav-icon fas fa-user-alt"></i>
 			        				<p>Usuário</p>
 			      				</a>

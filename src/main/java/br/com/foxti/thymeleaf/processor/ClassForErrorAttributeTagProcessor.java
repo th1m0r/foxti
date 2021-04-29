@@ -1,4 +1,4 @@
-package br.com.foxit.thymeleaf.processor;
+package br.com.foxti.thymeleaf.processor;
 
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;

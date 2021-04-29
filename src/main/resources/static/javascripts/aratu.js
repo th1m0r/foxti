@@ -8,8 +8,6 @@ Aratu.MaskMoney = (function() {
 	}
 	
 	MaskMoney.prototype.enable = function() {
-//		this.decimal.maskMoney({ decimal: ',', thousands: '.' });
-//		this.plain.maskMoney({ precision: 0, thousands: '.' });
 		this.decimal.maskNumber({ decimal: ',', thousands: '.' });
 		this.plain.maskNumber({ integer: true, thousands: '.' });
 	}
@@ -56,24 +54,6 @@ Aratu.MaskCep = (function() {
 	
 }());
 
-Aratu.MaskDate = (function() {
-	
-	function MaskDate() {
-		this.inputDate = $('.js-date');
-	}
-	
-	MaskDate.prototype.enable = function() {
-		this.inputDate.mask('00/00/0000');
-		this.inputDate.datepicker({
-			orientation: 'bottom',
-			language: 'pt-BR',
-			autoclose: true
-		});
-	}
-	
-	return MaskDate;
-	
-}());
 
 Aratu.Security = (function() {
 	
@@ -87,7 +67,6 @@ Aratu.Security = (function() {
 			jqxhr.setRequestHeader(this.header, this.token);		 	
 		}.bind(this));
 	}
-	
 	return Security;
 	
 }());
@@ -116,9 +95,6 @@ $(function() {
 	
 	var maskCep = new Aratu.MaskCep();
 	maskCep.enable();
-	
-	var maskDate = new Aratu.MaskDate();
-	maskDate.enable();
 	
 	var security = new Aratu.Security();
 	security.enable();	

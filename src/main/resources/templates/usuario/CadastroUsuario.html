@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:aratu="http://aratu.aratuweb.com.br">
+
+<head>
+<title>Usuários</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+		
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div>
+						<h1>Cadastro de usuário</h1>		
+					</div>
+					<div class="ml-auto">						
+						<div class="float-sm-right">					
+							<a class="btn btn-sm btn-primary" th:href="@{/usuarios}">
+								<i class="fa fa-search"></i> 
+								<span>Pesquisar</span>
+							</a>					
+						</div>							
+					</div>					
+				</div>			
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<form role="form" th:action="${usuario.novo} ? @{/usuarios/novo} : @{/usuarios/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
+							<aratu:message/>
+							<div class="row">
+								<div class="col-4">
+									<div class="form-group">
+										<label class="control-label">Código</label>
+										<input type="text" id="id" 
+												th:field="*{id}" class="form-control form-control-sm" 
+												th:errorclass="has-error"										
+												readonly="readonly" placeholder="Código"/>
+									</div>
+								</div>						
+							</div>
+							<div class="row">								
+								<div class="col-12">
+									<div class="form-group">
+										<label class="control-label">Nome</label>		
+										<input type="text" id="nome" 
+												th:field="*{nome}" class="form-control form-control-sm"
+												autocomplete="off" placeholder="Nome"
+												autofocus="autofocus" th:errorclass="is-invalid" />
+									</div>
+								</div>									
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label class="control-label">Login</label>
+										<input type="text" id="Login" 
+												th:field="*{login}" class="form-control form-control-sm"
+												autocomplete="off" placeholder="Login"
+												autofocus="autofocus" th:errorclass="is-invalid" />
+									</div>
+								</div>									
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<div class="form-group">
+										<label class="control-label">Senha</label>
+										<input type="password" id="senha" 
+												th:field="*{senha}" class="form-control form-control-sm"
+												autocomplete="off" placeholder="Senha"
+												autofocus="autofocus" th:errorclass="is-invalid" />
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<label class="control-label">Confirma Senha</label>		
+										<input type="password" id="confirmaSenha" 
+												th:field="*{confirmaSenha}" class="form-control form-control-sm"
+												autocomplete="off" placeholder="Confirma Senha"
+												autofocus="autofocus" th:errorclass="is-invalid" />
+									</div>
+								</div>									
+							</div>
+							<div class="row mt-3">
+								<div class="col-4"></div>							
+								<div class="col-4">
+									<a href="javascript:history.back()" class="btn btn-sm btn-danger w-100">Cancelar</a>
+								</div>
+								<div class="col-4">
+									<button type="submit" class="btn btn-sm btn-primary w-100">Salvar</button>						
+								</div>
+							</div>
+						</form>									
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("input").keypress(
+			function(e) {
+				var k = e.which || e.keyCode;
+				if (k == 13) {
+					e.preventDefault();				
+					$(this).closest('div').next().find('input, button').first().focus();					
+			}	
+		});	
+		
+		$("button").on("focus", () => $("form").submit());
+	</script>
+</body>
+</html>
