@@ -7,7 +7,7 @@
 	xmlns:aratu="http://aratu.aratuweb.com.br">
 
 <head>
-<title>Usuários</title>
+<title>Técnicos</title>
 </head>
 <body>
 	<div layout:fragment="conteudo">
@@ -16,11 +16,11 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div>
-						<h1>Cadastro de usuário</h1>		
+						<h1>Cadastro de técnicos</h1>		
 					</div>
 					<div class="ml-auto">						
 						<div class="float-sm-right">					
-							<a class="btn btn-sm btn-primary" th:href="@{/usuarios}">
+							<a class="btn btn-sm btn-primary" th:href="@{/tecnicos}">
 								<i class="fa fa-search"></i> 
 								<span>Pesquisar</span>
 							</a>					
@@ -34,7 +34,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6">
-						<form role="form" th:action="${usuario.novo} ? @{/usuarios/novo} : @{/usuarios/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
+						<form role="form" th:action="${tecnico.novo} ? @{/tecnicos/novo} : @{/tecnicos/{id}(id=${tecnico.id})}" th:object="${tecnico}" method="post">
 							<aratu:message/>
 							<div class="row">
 								<div class="col-4">
@@ -61,33 +61,24 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="form-group">
-										<label class="control-label">Login</label>
-										<input type="text" id="Login" 
-												th:field="*{login}" class="form-control form-control-sm"
-												autocomplete="off" placeholder="Login"
+										<label class="control-label">E-mail</label>
+										<input type="text" id="email" 
+												th:field="*{email}" class="form-control form-control-sm"
+												autocomplete="off" placeholder="E-mail"
 												autofocus="autofocus" th:errorclass="is-invalid" />
 									</div>
 								</div>									
 							</div>
 							<div class="row">
-								<div class="col-6">
+								<div class="col-sm-12">
 									<div class="form-group">
-										<label class="control-label">Senha</label>
-										<input type="password" id="senha" 
-												th:field="*{senha}" class="form-control form-control-sm"
-												autocomplete="off" placeholder="Senha"
+										<label class="control-label">Telefone</label>
+										<input type="text" id="telefone" 
+												th:field="*{telefone}" class="form-control form-control-sm js-phone-number"
+												autocomplete="off" placeholder="Telefone"
 												autofocus="autofocus" th:errorclass="is-invalid" />
 									</div>
-								</div>
-								<div class="col-6">
-									<div class="form-group">
-										<label class="control-label">Confirma Senha</label>		
-										<input type="password" id="confirmaSenha" 
-												th:field="*{confirmaSenha}" class="form-control form-control-sm"
-												autocomplete="off" placeholder="Confirma Senha"
-												autofocus="autofocus" th:errorclass="is-invalid" />
-									</div>
-								</div>									
+								</div>														
 							</div>
 							<div class="row mt-3">
 								<div class="col-4"></div>							
@@ -103,6 +94,18 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	<script type="text/javascript">
+		$("input").keypress(
+			function(e) {
+				var k = e.which || e.keyCode;
+				if (k == 13) {
+					e.preventDefault();				
+					$(this).closest('div').next().find('input, button').first().focus();					
+			}	
+		});	
+		
+		$("button").on("focus", () => $("form").submit());
+	</script>
 </body>
 </html>

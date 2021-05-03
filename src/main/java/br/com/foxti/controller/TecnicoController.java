@@ -19,56 +19,51 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.foxti.controller.page.PageWrapper;
-import br.com.foxti.model.Usuario;
-import br.com.foxti.service.UsuarioService;
-import br.com.foxti.service.exception.EntidadeExistenteException;
+import br.com.foxti.model.Tecnico;
+import br.com.foxti.service.TecnicoService;
 
 @Controller
-@RequestMapping("usuarios")
-public class UsuarioController {
+@RequestMapping("tecnicos")
+public class TecnicoController {
 
 	@Autowired
-	private UsuarioService usuarioService;
+	private TecnicoService tecnicoService;
 
 	@GetMapping
 	public ModelAndView listar(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("usuario/PesquisaUsuario");
-		PageWrapper<Usuario> pagina = new PageWrapper<>(usuarioService.findAll(pageable), request);
+		ModelAndView mv = new ModelAndView("tecnico/PesquisaTecnico");
+		PageWrapper<Tecnico> pagina = new PageWrapper<>(tecnicoService.findAll(pageable), request);
 		mv.addObject("pagina", pagina);
 		return mv;
 	}
 
 	@GetMapping("/novo")
-	public ModelAndView cadastrar(Usuario usuario) {
-		return new ModelAndView("usuario/CadastroUsuario");
+	public ModelAndView cadastrar(Tecnico tecnico) {
+		return new ModelAndView("tecnico/CadastroTecnico");
 	}
 
 	@RequestMapping(value = { "/novo", "{\\d+}" }, method = RequestMethod.POST)
-	public ModelAndView salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+	public ModelAndView salvar(@Valid Tecnico tecnico, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return cadastrar(usuario);
+			return cadastrar(tecnico);
 		}
-		try {
-			usuarioService.save(usuario);
-		} catch (EntidadeExistenteException ex) {
-			result.rejectValue("login", ex.getMessage(), ex.getMessage());
-			return cadastrar(usuario);
-		}
-		attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso!");
-		return new ModelAndView("redirect:/usuarios");
+		tecnicoService.save(tecnico);
+
+		attributes.addFlashAttribute("mensagem", "Técnico salvo com sucesso!");
+		return new ModelAndView("redirect:/tecnicos");
 	}
 
 	@GetMapping("/{id}")
 	public ModelAndView editar(@PathVariable("id") Long id) {
-		Usuario usuario = usuarioService.findById(id);
-		ModelAndView mv = cadastrar(usuario);
-		mv.addObject(usuario);
+		Tecnico tecnico = tecnicoService.buscarOuFalhar(id);
+		ModelAndView mv = cadastrar(tecnico);
+		mv.addObject(tecnico);
 		return mv;
 	}
 
 	@DeleteMapping("/{id}")
 	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("id") Long id) {
-		usuarioService.delete(id);
+		tecnicoService.delete(id);
 		return ResponseEntity.ok().build();
 	}
 

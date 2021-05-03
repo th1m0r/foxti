@@ -50,11 +50,12 @@ Aratu.DialogoExcluir = (function() {
 		var novaUrl = urlAtual.indexOf('excluido') > -1 ? urlAtual : urlAtual + separador + 'excluido';
 		
 		window.location = novaUrl;
+		Swal.close();
 	}
 	
 	function onErroExcluir(e) {
 		console.log(e)
-		Swal.fire('Oops!', e.responseText || 'Não foi possível excluir o cliente.', 'error');
+		Swal.fire('Oops!', e.responseText || 'Não foi possível excluir.', 'error');
 	}	
 	return DialogoExcluir;
 	

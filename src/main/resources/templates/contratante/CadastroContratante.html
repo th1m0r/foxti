@@ -7,7 +7,7 @@
 	xmlns:aratu="http://aratu.aratuweb.com.br">
 
 <head>
-<title>Usuários</title>
+<title>Contratantes</title>
 </head>
 <body>
 	<div layout:fragment="conteudo">
@@ -16,11 +16,11 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div>
-						<h1>Cadastro de usuário</h1>		
+						<h1>Cadastro de contratantes</h1>		
 					</div>
 					<div class="ml-auto">						
 						<div class="float-sm-right">					
-							<a class="btn btn-sm btn-primary" th:href="@{/usuarios}">
+							<a class="btn btn-sm btn-primary" th:href="@{/contratantes}">
 								<i class="fa fa-search"></i> 
 								<span>Pesquisar</span>
 							</a>					
@@ -34,7 +34,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6">
-						<form role="form" th:action="${usuario.novo} ? @{/usuarios/novo} : @{/usuarios/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
+						<form role="form" th:action="${contratante.novo} ? @{/contratantes/novo} : @{/contratantes/{id}(id=${contratante.id})}" th:object="${contratante}" method="post">
 							<aratu:message/>
 							<div class="row">
 								<div class="col-4">
@@ -45,10 +45,8 @@
 												th:errorclass="has-error"										
 												readonly="readonly" placeholder="Código"/>
 									</div>
-								</div>						
-							</div>
-							<div class="row">								
-								<div class="col-12">
+								</div>
+								<div class="col-8">
 									<div class="form-group">
 										<label class="control-label">Nome</label>		
 										<input type="text" id="nome" 
@@ -58,39 +56,9 @@
 									</div>
 								</div>									
 							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label class="control-label">Login</label>
-										<input type="text" id="Login" 
-												th:field="*{login}" class="form-control form-control-sm"
-												autocomplete="off" placeholder="Login"
-												autofocus="autofocus" th:errorclass="is-invalid" />
-									</div>
-								</div>									
-							</div>
-							<div class="row">
-								<div class="col-6">
-									<div class="form-group">
-										<label class="control-label">Senha</label>
-										<input type="password" id="senha" 
-												th:field="*{senha}" class="form-control form-control-sm"
-												autocomplete="off" placeholder="Senha"
-												autofocus="autofocus" th:errorclass="is-invalid" />
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="form-group">
-										<label class="control-label">Confirma Senha</label>		
-										<input type="password" id="confirmaSenha" 
-												th:field="*{confirmaSenha}" class="form-control form-control-sm"
-												autocomplete="off" placeholder="Confirma Senha"
-												autofocus="autofocus" th:errorclass="is-invalid" />
-									</div>
-								</div>									
-							</div>
 							<div class="row mt-3">
-								<div class="col-4"></div>							
+								<div class="col-4"></div>
+							
 								<div class="col-4">
 									<a href="javascript:history.back()" class="btn btn-sm btn-danger w-100">Cancelar</a>
 								</div>
@@ -103,6 +71,6 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>

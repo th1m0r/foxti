@@ -96,7 +96,7 @@ $(function() {
 	var maskCep = new Aratu.MaskCep();
 	maskCep.enable();
 	
-	var security = new Aratu.Security();
-	security.enable();	
+	//var security = new Aratu.Security();
+	//security.enable();	
 
 });

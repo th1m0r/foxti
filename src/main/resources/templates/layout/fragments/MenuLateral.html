@@ -28,23 +28,29 @@
 	        			</a>
 	       				<ul class="nav nav-treeview">		       				
 			       			<li class="nav-item">
-			        			<a th:href="@{/produtos}" class="nav-link">
+			        			<a th:href="@{/contratantes}" class="nav-link">
 			        				<i class="nav-icon fas fa-university"></i>
 			        				<p>Contratante</p>
 			      				</a>
 			       			</li>
+       						<li class="nav-item">
+		        				<a th:href="@{/rotas}" class="nav-link">
+			        				<i class="nav-icon fas fa-route"></i>
+			        				<p>Rota</p>
+			      				</a>
+			       			</li>
+		       				<li class="nav-item">
+		        				<a th:href="@{/tecnicos}" class="nav-link">
+		        					<i class="nav-icon fas fa-user-cog"></i>
+			        				<p>Técinico</p>
+			      				</a>
+			       			</li>			       			 
        						<li class="nav-item">
 		        				<a th:href="@{/usuarios}" class="nav-link">
 			        				<i class="nav-icon fas fa-user-alt"></i>
 			        				<p>Usuário</p>
 			      				</a>
 			       			</li>
-		       				<li class="nav-item">
-		        				<a th:href="@{/fornecedores}" class="nav-link">
-		        					<i class="nav-icon fas fa-user-cog"></i>
-			        				<p>Técinico</p>
-			      				</a>
-			       			</li>			       			 
 	         			</ul>
 		       		</li>	
 	
@@ -58,8 +64,8 @@
 		         			
 	         			<ul class="nav nav-treeview">	         		
 				            <li class="nav-item">
-				            	<a th:href="@{/validacaoPreco}" class="nav-link">
-			            			<i class="nav-icon fa fa-hand-holding-usd"></i>	
+				            	<a th:href="@{/ordens-servico/novo}" class="nav-link">
+			            			<i class="nav-icon fas fa-envelope-open-text"></i>
 				            		<p>Cadastrar</p>
 				            	</a>
 				            </li>

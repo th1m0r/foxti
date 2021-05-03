@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:aratu="http://aratu.tmautomacao.com.br">
+
+<head>
+	<title>Contratantes</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div>
+						<h1>Pesquisa contratantes</h1>
+					</div>					
+					<div class="ml-auto">					
+						<a class="btn btn-sm btn-primary" th:href="@{/contratantes/novo}">
+							<i class="fa fa-plus"></i> 
+							<span>Cadastrar</span>
+						</a>					
+					</div>
+				</div>				
+			</div>
+		</section>
+		
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="table-responsive">
+							<table class="table table-sm table-striped">
+								<thead>
+									<tr>
+										<th class="text-center">ID</th>
+										<th class="text-center">NOME</th>
+										<th class="text-center"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="contratante : ${pagina.conteudo}">
+										<td class="text-center" th:text="${contratante.id}"></td>
+										<td	th:text="${contratante.nome}"></td>										
+										<td class="text-center">
+											<a class="btn  btn-info  js-tooltip" title="Editar"
+													th:href="@{/contratantes/{id}(id=${contratante.id})}"> 
+												<i class="fas fa-pencil-alt"></i>
+											</a>
+											
+											<a class="btn  btn-danger  js-tooltip js-exclusao-btn"
+													title="Excluir" href="#"
+													data:url="@{/contratantes/{id}(id=${contratante.id})}"
+													data:objeto="${contratante.nome}"> 
+												<i class="fas fa-trash"></i>
+											</a>
+										</td>
+									</tr>
+									<tr th:if="${pagina.vazia}">
+										<td colspan="3">Nenhum contratante cadastrado</td>
+									</tr>
+								</tbody>
+							</table>					
+						</div>												
+						<aratu:pagination page="${pagina}"/>	
+					</div>	
+				</div>			
+			</div>
+		</section>
+	</div>
+</body>
+</html>

@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Usuario {
+public class Tecnico {
 
 	@Id
 	@EqualsAndHashCode.Include
@@ -25,22 +25,20 @@ public class Usuario {
 	@NotEmpty
 	private String nome;
 
-	@NotEmpty
-	private String login;
+	@Email
+	private String email;
 
-	@NotEmpty
-	private String senha;
-
-	@Transient
-	private String confirmaSenha;
-
+	private String telefone;
+	
+	
 	public boolean isNovo() {
 		return id == null;
 	}
 	
-	@PreUpdate
 	@PrePersist
-	public void toUpperCase() {
-		setNome(nome.toUpperCase());		
+	@PreUpdate
+	private void prePersisteUpdate() {
+		nome = nome.toUpperCase();
 	}
+
 }

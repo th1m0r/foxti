@@ -19,56 +19,56 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.foxti.controller.page.PageWrapper;
-import br.com.foxti.model.Usuario;
-import br.com.foxti.service.UsuarioService;
+import br.com.foxti.model.Rota;
+import br.com.foxti.service.RotaService;
 import br.com.foxti.service.exception.EntidadeExistenteException;
 
 @Controller
-@RequestMapping("usuarios")
-public class UsuarioController {
+@RequestMapping("rotas")
+public class RotaController {
 
 	@Autowired
-	private UsuarioService usuarioService;
+	private RotaService rotaService;
 
 	@GetMapping
 	public ModelAndView listar(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("usuario/PesquisaUsuario");
-		PageWrapper<Usuario> pagina = new PageWrapper<>(usuarioService.findAll(pageable), request);
+		ModelAndView mv = new ModelAndView("rota/PesquisaRota");
+		PageWrapper<Rota> pagina = new PageWrapper<>(rotaService.findAll(pageable), request);
 		mv.addObject("pagina", pagina);
 		return mv;
 	}
 
 	@GetMapping("/novo")
-	public ModelAndView cadastrar(Usuario usuario) {
-		return new ModelAndView("usuario/CadastroUsuario");
+	public ModelAndView cadastrar(Rota rota) {
+		return new ModelAndView("rota/CadastroRota");
 	}
 
 	@RequestMapping(value = { "/novo", "{\\d+}" }, method = RequestMethod.POST)
-	public ModelAndView salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+	public ModelAndView salvar(@Valid Rota rota, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return cadastrar(usuario);
+			return cadastrar(rota);
 		}
 		try {
-			usuarioService.save(usuario);
+			rotaService.save(rota);
 		} catch (EntidadeExistenteException ex) {
-			result.rejectValue("login", ex.getMessage(), ex.getMessage());
-			return cadastrar(usuario);
+			result.rejectValue("nome", ex.getMessage(), ex.getMessage());
+			return cadastrar(rota);
 		}
-		attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso!");
-		return new ModelAndView("redirect:/usuarios");
+		attributes.addFlashAttribute("mensagem", "Rota salva com sucesso!");
+		return new ModelAndView("redirect:/rotas");
 	}
 
 	@GetMapping("/{id}")
 	public ModelAndView editar(@PathVariable("id") Long id) {
-		Usuario usuario = usuarioService.findById(id);
-		ModelAndView mv = cadastrar(usuario);
-		mv.addObject(usuario);
+		Rota rota = rotaService.buscarOuFalhar(id);
+		ModelAndView mv = cadastrar(rota);
+		mv.addObject(rota);
 		return mv;
 	}
 
 	@DeleteMapping("/{id}")
 	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("id") Long id) {
-		usuarioService.delete(id);
+		rotaService.delete(id);
 		return ResponseEntity.ok().build();
 	}
 

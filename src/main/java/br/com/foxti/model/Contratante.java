@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Usuario {
+public class Contratante {
 
 	@Id
 	@EqualsAndHashCode.Include
@@ -25,22 +25,16 @@ public class Usuario {
 	@NotEmpty
 	private String nome;
 
-	@NotEmpty
-	private String login;
-
-	@NotEmpty
-	private String senha;
-
 	@Transient
-	private String confirmaSenha;
-
 	public boolean isNovo() {
 		return id == null;
 	}
 	
 	@PreUpdate
 	@PrePersist
-	public void toUpperCase() {
-		setNome(nome.toUpperCase());		
+	private void prePersistUpdate() {		
+		System.out.println("passei aqui");
+		nome = nome.toUpperCase();		
 	}
+
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.foxti.model.Usuario;
 import br.com.foxti.repository.UsuarioRepository;
 import br.com.foxti.service.exception.NegocioException;
-import br.com.foxti.service.exception.UsuarioExistenteException;
+import br.com.foxti.service.exception.EntidadeExistenteException;
 
 @Service
 public class UsuarioService {
@@ -18,7 +18,7 @@ public class UsuarioService {
 
 	public Usuario save(Usuario usuario) {
 		if (existeUsuario(usuario.getLogin()) && usuario.isNovo()) {
-			throw new UsuarioExistenteException("Login (" + usuario.getLogin() + ") já cadadstro");
+			throw new EntidadeExistenteException("Login (" + usuario.getLogin() + ") já cadadstro");
 		}
 		return usuarioRepository.save(usuario);
 	}

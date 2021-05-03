@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:aratu="http://aratu.aratuweb.com.br">
+
+<head>
+<title>Ordem de serviço</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+		
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div>
+						<h1>Cadastro de ordem de serviço</h1>		
+					</div>
+					<div class="ml-auto">						
+						<div class="float-sm-right">					
+							<a class="btn btn-sm btn-primary" th:href="@{/ordemServicos}">
+								<i class="fa fa-search"></i> 
+								<span>Pesquisar</span>
+							</a>					
+						</div>							
+					</div>					
+				</div>			
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<form role="form" th:action="${ordemServico.novo} ? @{/ordens-servico/novo} : @{/ordens-servico/{id}(id=${ordemServico.id})}" 
+							th:object="${ordemServico}" method="post">
+							<aratu:message/>
+							<div class="row">
+								<div class="col-sm-2">
+									<div class="form-group">
+										<label class="control-label">Código</label>
+										<input type="text" id="id" 
+												th:field="*{id}" class="form-control form-control-sm" 
+												th:errorclass="has-error"										
+												readonly="readonly" placeholder="Código"/>
+									</div>
+								</div>
+								<div class="ml-auto col-sm-3">
+									<div class="form-group">
+										<label class="control-label">Status</label>
+										<input type="text" id="status" 
+												th:field="*{status}" class="form-control form-control-sm" 
+												th:errorclass="has-error"										
+												readonly="readonly" placeholder="Status"/>
+									</div>
+								</div>									
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">Data Abertura</label>
+										<input type="text" id="dataAbertura" 
+												th:field="*{dataAbertura}" class="form-control form-control-sm" 
+												th:errorclass="has-error"										
+												readonly="readonly" placeholder="Data Abertura"/>
+									</div>
+								</div>
+							</div>
+							<div class="row">															
+								<div class="col-sm-2">
+									<div class="form-group">
+										<label class="control-label">Número</label>		
+										<input type="text" id="numero" 
+												th:field="*{numero}" class="form-control form-control-sm"
+												autocomplete="off" placeholder="Nome"
+												autofocus="autofocus" th:errorclass="is-invalid" />
+									</div>
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<label class="control-label">Data Vencimento</label>
+										<input type="date" id="dataVencimento" 
+												th:field="*{dataVencimento}" class="form-control form-control-sm" 
+												th:errorclass="has-error"										
+												placeholder="Data Vencimento"/>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">Tipo serviço</label>
+										<select id="tipoServico" th:field="*{tipoServico}" class="form-control form-control-sm" th:errorclass="is-invalid">
+											<option value="">Selecione...</option>
+											<option th:each="tipoServico : ${tiposServico}" th:value="${tipoServico}" th:text="${tipoServico.descricao}"></option>									
+										</select>
+									</div>
+								</div>								
+							</div>
+							
+							<div class="row">
+																
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">Contratante</label>
+										<select id="contratante" th:field="*{contratante}" class="form-control form-control-sm" th:errorclass="is-invalid">
+											<option value="">Selecione...</option>
+											<option th:each="contratante : ${contratantes}" th:value="${contratante.id}" th:text="${contratante.nome}"></option>									
+										</select>
+									</div>
+								</div>
+								
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">Técnico</label>
+										<select id="tecnico" th:field="*{tecnico}" class="form-control form-control-sm" th:errorclass="is-invalid">
+											<option value="">Selecione...</option>
+											<option th:each="tecnico : ${tecnicos}" th:value="${tecnico.id}" th:text="${tecnico.nome}"></option>									
+										</select>
+									</div>
+								</div>
+																
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">Rota</label>
+										<select id="rota" th:field="*{rota}" class="form-control form-control-sm" th:errorclass="is-invalid">
+											<option value="">Selecione...</option>
+											<option th:each="rota : ${rotas}" th:value="${rota.id}" th:text="${rota.nome}"></option>									
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label class="control-label">Observação</label>		
+										<input type="text" id="observacao" 
+												th:field="*{observacao}" class="form-control form-control-sm"
+												autocomplete="off" placeholder="Observacao"
+												autofocus="autofocus" th:errorclass="is-invalid" />
+									</div>
+								</div>
+							</div>
+							
+							<div class="row mt-3">
+								<div class="col-8"></div>
+							
+								<div class="col-2">
+									<a href="javascript:history.back()" class="btn btn-sm btn-danger w-100">Cancelar</a>
+								</div>
+								<div class="col-2">
+									<button type="submit" class="btn btn-sm btn-primary w-100">Salvar</button>						
+								</div>
+							</div>
+						</form>									
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="javascript-extra">
+		<script type="text/javascript">
+			$("input").keypress(
+				function(e) {
+					var k = e.which || e.keyCode;
+					if (k == 13) {
+						e.preventDefault();				
+						$(this).closest('div').next().find('input, button').first().focus();					
+				}	
+			});	
+		</script>
+	</th:block>
+</body>
+</html>
