@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:aratu="http://aratu.tmautomacao.com.br">
+
+<head>
+	<title>Ordem de serviço</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div>
+						<h1>Pesquisa ordem serviço</h1>
+					</div>					
+					<div class="ml-auto">					
+						<a class="btn btn-sm btn-primary" th:href="@{/ordens-servico/novo}">
+							<i class="fa fa-plus"></i> 
+							<span>Cadastrar</span>
+						</a>					
+					</div>
+				</div>				
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="table-responsive">
+							<table class="table table-sm table-striped">
+								<thead>
+									<tr>
+										<th class="text-center">NUMERO</th>
+										<th class="text-center">CONTRATANTE</th>
+										<th class="text-center">TECNICO</th>
+										<th class="text-center">ROTA</th>
+										<th class="text-center">STATUS</th>
+										<th class="text-center">ABERTURA</th>
+										<th class="text-center">VENCIMENTO</th>										
+										<th class="text-center"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="ordemServico : ${pagina.conteudo}">
+										<td class="text-center" th:text="${ordemServico.numero}"></td>
+										<td	th:text="${ordemServico.contratante.nome}"></td>	
+										<td	th:text="${ordemServico.tenico.nome}"></td>
+										<td	th:text="${ordemServico.rota.nome}"></td>
+										<td	th:text="${ordemServico.status.descricao}"></td>
+										<td	th:text="${ordemServico.dataAbertura}"></td>
+										<td	th:text="${ordemServico.dataVencimento}"></td>									
+										<td class="text-center">
+											<a class="btn  btn-info  js-tooltip" title="Editar"
+													th:href="@{/ordens-servico/{id}(id=${ordemServico.id})}"> 
+												<i class="fas fa-pencil-alt"></i>
+											</a>
+											
+											<a class="btn  btn-info  js-tooltip" title="Baixar"
+													th:href="@{/ordens-servico/{id}/baixar(id=${ordemServico.id})}"> 
+												<i class="fas fa-arrow-alt-circle-down"></i>
+											</a>
+											
+											<a class="btn  btn-info  js-tooltip" title="Reagendar"
+													th:href="@{/ordens-servico/{id}/reagendar(id=${ordemServico.id})}"> 
+												<i class="fas fa-pencil-alt"></i>
+											</a>
+																																	
+											<a class="btn  btn-danger  js-tooltip js-exclusao-btn"
+													title="Excluir" href="#"
+													data:url="@{/ordens-servico/{id}(id=${ordemServico.id})}"
+													data:objeto="${ordemServico.numero}"> 
+												<i class="fas fa-trash"></i>
+											</a>
+										</td>
+									</tr>
+									<tr th:if="${pagina.vazia}">
+										<td colspan="3">Nenhuma rota cadastrada</td>
+									</tr>
+								</tbody>
+							</table>					
+						</div>												
+						<aratu:pagination page="${pagina}"/>	
+					</div>	
+				</div>			
+			</div>
+		</div>
+	</div>
+</body>
+</html>
