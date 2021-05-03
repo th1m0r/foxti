@@ -1,10 +1,10 @@
-package br.com.foxit;
+package br.com.foxti;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FoxitApplicationTests {
+class FoxtiApplicationTests {
 
 	@Test
 	void contextLoads() {

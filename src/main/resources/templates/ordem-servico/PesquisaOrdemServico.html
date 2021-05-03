@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div layout:fragment="conteudo">
-		<div class="content-header">
+		<div class="content-header mb-3">
 			<div class="container-fluid">
 				<div class="row">
 					<div>
@@ -30,44 +30,58 @@
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-sm table-striped">
+							<table class="table table-striped">
 								<thead>
 									<tr>
 										<th class="text-center">NUMERO</th>
+										<th class="text-center">STATUS</th>
+										<th class="text-center">TIPO SERVIÇO</th>
 										<th class="text-center">CONTRATANTE</th>
 										<th class="text-center">TECNICO</th>
 										<th class="text-center">ROTA</th>
-										<th class="text-center">STATUS</th>
-										<th class="text-center">ABERTURA</th>
-										<th class="text-center">VENCIMENTO</th>										
+										<th class="text-center">DT ABERTURA</th>
+										<th class="text-center">DT VENCIMENTO</th>
+										<th class="text-center">DT ATENDIMENTO</th>
+										<th class="text-center">DT SAIDA</th>
+										<th class="text-center">DT RETORNO</th>
+										<th class="text-center">OBS</th>												
 										<th class="text-center"></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="ordemServico : ${pagina.conteudo}">
 										<td class="text-center" th:text="${ordemServico.numero}"></td>
-										<td	th:text="${ordemServico.contratante.nome}"></td>	
-										<td	th:text="${ordemServico.tenico.nome}"></td>
-										<td	th:text="${ordemServico.rota.nome}"></td>
-										<td	th:text="${ordemServico.status.descricao}"></td>
-										<td	th:text="${ordemServico.dataAbertura}"></td>
-										<td	th:text="${ordemServico.dataVencimento}"></td>									
-										<td class="text-center">
-											<a class="btn  btn-info  js-tooltip" title="Editar"
+										<td	class="text-center" th:text="${ordemServico.status.descricao}"></td>
+										<td	class="text-center" th:text="${ordemServico.tipoServico.descricao}"></td>
+										<td	class="text-center" th:text="${ordemServico.contratante.nome}"></td>	
+										<td	class="text-center" th:text="${ordemServico.tecnico.nome}"></td>
+										<td	class="text-center" th:text="${ordemServico.rota.nome}"></td>
+										<td	class="text-center" th:text="${#temporals.format(ordemServico.dataAbertura, 'dd/MM/yyyy')}"></td>
+										<td	class="text-center" th:text="${#temporals.format(ordemServico.dataVencimento, 'dd/MM/yyyy')}"></td>
+										<td	class="text-center" th:text="${#temporals.format(ordemServico.dataAtendimento, 'dd/MM/yyyy')}"></td>
+										<td	class="text-center" th:text="${#temporals.format(ordemServico.dataSaida, 'dd/MM/yyyy')}"></td>
+										<td	class="text-center" th:text="${#temporals.format(ordemServico.dataRetorno, 'dd/MM/yyyy')}"></td>
+										<td	class="text-center" th:text="${#temporals.format(ordemServico.dataRetorno, 'dd/MM/yyyy')}"></td>																		
+										<td class="aling-center">
+											<a class="btn  btn-primary  js-tooltip" title="Editar"
 													th:href="@{/ordens-servico/{id}(id=${ordemServico.id})}"> 
 												<i class="fas fa-pencil-alt"></i>
 											</a>
 											
-											<a class="btn  btn-info  js-tooltip" title="Baixar"
+											<a class="btn  btn-success  js-tooltip" title="Baixar"
 													th:href="@{/ordens-servico/{id}/baixar(id=${ordemServico.id})}"> 
 												<i class="fas fa-arrow-alt-circle-down"></i>
 											</a>
 											
-											<a class="btn  btn-info  js-tooltip" title="Reagendar"
+											<a class="btn  btn-warning  js-tooltip" title="Reagendar"
 													th:href="@{/ordens-servico/{id}/reagendar(id=${ordemServico.id})}"> 
-												<i class="fas fa-pencil-alt"></i>
+												<i class="fas fa-calendar-alt"></i>
+											</a>
+											<a class="btn  btn-info  js-tooltip" title="Detalhes"
+													th:href="@{/ordens-servico/{id}/reagendar(id=${ordemServico.id})}"> 
+												<i class="fas fa-info-circle"></i>
 											</a>
 																																	
 											<a class="btn  btn-danger  js-tooltip js-exclusao-btn"

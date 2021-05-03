@@ -19,6 +19,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<flyway.version>5.2.4</flyway.version>
 	</properties>
 
 	<dependencies>
@@ -74,12 +75,13 @@
 	</dependencies>
 
 	<build>
-		<finalName>aratu</finalName>
+		<finalName>foxti</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<executable>true</executable>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

@@ -46,6 +46,7 @@ public class OrdemServico {
 	
 	private LocalDate dataAbertura;
 	private LocalDate dataAtendimento;
+	private LocalDate dataSaida;
 	private LocalDate dataRetorno;
 	private LocalDate dataVencimento;
 	private LocalDate dataReagendamento;
