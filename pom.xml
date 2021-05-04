@@ -18,6 +18,8 @@
 	<description>Gerenciamento de ordens de serviço</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
 		<flyway.version>5.2.4</flyway.version>
 	</properties>
@@ -81,7 +83,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<executable>true</executable>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
